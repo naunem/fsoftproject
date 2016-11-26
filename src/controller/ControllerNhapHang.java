@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import library.LibraryDimension;
@@ -24,31 +26,33 @@ import model.ModelNhapHang;
  */
 public class ControllerNhapHang {
 
+	ModelFood modelFood;
     ModelNhapHang modelItem;
     
     public ControllerNhapHang() {
         modelItem = new ModelNhapHang();
     }
 
-    public void loadTable(JTable table, DefaultTableModel model) {
+    public void loadTable(JTable table, DefaultTableModel model,Food food) {
         table.setModel(model);
-        model.setDataVector(vRows(), vCols());
+        model.setDataVector(vRows(food), vCols());
+        setWidthHeightTable(table);       
     }
 
     public Vector<String> vCols() {
         Vector<String> vCols = new Vector<String>();
-        vCols.add("ID");
+        vCols.add("STT");
         vCols.add("Tên Thức Uống");
         vCols.add("Số Lượng");
         vCols.add("Giá Nhập");
         return vCols;
     }
 
-    public Vector<Vector<Object>> vRows() {
+    public Vector<Vector<Object>> vRows(Food food) {
         Vector<Vector<Object>> vRows = new Vector<Vector<Object>>();
         ModelFood modelFood=new ModelFood();
         int i=1;
-        ArrayList<Food> flist = modelFood.getList(null);
+        ArrayList<Food> flist = modelFood.getList(food);
         for (Food item : flist) {
             Vector<Object> v = new Vector<Object>();
             v.add(i);
@@ -57,6 +61,37 @@ public class ControllerNhapHang {
             v.add(3000);
             vRows.add(v);
             i++;
+        }
+        return vRows;
+
+    }
+    
+    public void loadTableSearch(JTable table, DefaultTableModel model, Food fitem) {
+        table.setModel(model);
+        model.setDataVector(vRowsSearch(fitem), vColsSearch());
+        setWidthHeightTable(table);
+    }
+    
+    public Vector<String> vColsSearch() {
+        Vector<String> vCols = new Vector<String>();
+        vCols.add("STT");
+        vCols.add("Tên Thức Uống");
+        vCols.add("Số Lượng");
+        vCols.add("Giá Nhập");
+
+        return vCols;
+    }
+    
+    public Vector<Vector<Comparable>> vRowsSearch(Food fitem) {
+        Vector<Vector<Comparable>> vRows = new Vector<Vector<Comparable>>();
+        modelFood.foodview();
+        ArrayList<Food> flist = modelFood.getList(fitem);
+        for (Food item : flist) {
+            Vector<Comparable> v = new Vector<Comparable>();
+            v.add(item.getMafood());
+            v.add(item.getFoodname());
+            v.add(item.getPrice());
+            vRows.add(v);
         }
         return vRows;
 
@@ -83,7 +118,12 @@ public class ControllerNhapHang {
     public void setWidthHeightTable(JTable table) {
         table.getTableHeader().setPreferredSize(new Dimension(table.getPreferredSize().width, LibraryDimension.CHUCVU_HEAD_HEIGHT));
         table.setRowHeight(22);
-        
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+        table.getColumnModel().getColumn(0).setCellRenderer(leftRenderer);
+        table.getColumnModel().getColumn(1).setCellRenderer(leftRenderer);
+        table.getColumnModel().getColumn(2).setCellRenderer(leftRenderer);
+
         table.getColumnModel().getColumn(0).setPreferredWidth(100);
         table.getColumnModel().getColumn(1).setPreferredWidth(150);
         table.getColumnModel().getColumn(2).setPreferredWidth(150);

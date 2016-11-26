@@ -313,7 +313,7 @@ public class PnChucVu extends javax.swing.JPanel implements ActionListener {
         pnViTriCenter.setLayout(new java.awt.BorderLayout());
 
         tbChucVu.setAutoCreateRowSorter(true);
-        tbChucVu.setBackground(new java.awt.Color(153, 255, 153));
+//        tbChucVu.setBackground(new java.awt.Color(153, 255, 153));
         tbChucVu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -458,6 +458,7 @@ public class PnChucVu extends javax.swing.JPanel implements ActionListener {
             if (controller.del(item) > 0) {
                 loadTable(null);
                 JOptionPane.showMessageDialog(null, "Xóa thành công");
+                resetForm();
             }
         } else if (e.getSource() == btChucVuFind){
             int id = 0;
@@ -467,6 +468,7 @@ public class PnChucVu extends javax.swing.JPanel implements ActionListener {
             catch (NumberFormatException ex){
                 System.out.println("Phải nhập số vào ID");
             }
+            
             ChucVu cvFind = new ChucVu(id, tfChucVuNameFind.getText(), 0);
             loadTable(cvFind);
             

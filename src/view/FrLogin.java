@@ -7,6 +7,8 @@ package view;
 
 import bean.User;
 import controller.ControllerUser;
+import view.inc.PnLeft;
+
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.IOException;

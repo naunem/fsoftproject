@@ -6,12 +6,16 @@
 package controller;
 
 import bean.Food;
+import library.LibraryDimension;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import model.ModelFood;
@@ -31,11 +35,19 @@ public class ControllerFood {
     public void loadTable(JTable table, DefaultTableModel model, Food fitem) {
         table.setModel(model);
         model.setDataVector(vRows(fitem), vCols());
+        setWidthHeightTable(table);
     }
-    
 
-    public void setWidthHeightTable(JTable tbFood) {
-        
+    public void setWidthHeightTable(JTable table) {
+            table.getTableHeader().setPreferredSize(new Dimension(table.getPreferredSize().width, LibraryDimension.HOADON_HEAD_HEIGHT));
+            table.setRowHeight(22);
+            
+            DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+            leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+            table.getColumnModel().getColumn(0).setCellRenderer(leftRenderer);
+            table.getColumnModel().getColumn(1).setCellRenderer(leftRenderer);
+            table.getColumnModel().getColumn(2).setCellRenderer(leftRenderer);
+  
     }
 
     public Vector<String> vCols() {
@@ -84,11 +96,15 @@ public class ControllerFood {
         switch (method) {
             case "add":
                 if ("".equals(item.getFoodname())) {
-                    JOptionPane.showMessageDialog(null, "Vui lòng nhập chức vụ");
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập tên thức uống");
                     return false;
                 }
                 if ("".equals(item.getPrice())) {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập giá");
+                    return false;
+                }
+                if(modelItem.isExist(item)){
+                	JOptionPane.showMessageDialog(null, "Tên thức uống đã tồn tại");
                     return false;
                 }
                 break;
@@ -100,15 +116,18 @@ public class ControllerFood {
                 break;
             case "edit":
                 if ("".equals(item.getFoodname())) {
-                    JOptionPane.showMessageDialog(null, "Vui lòng nhập chức vụ");
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập tên thức uống");
                     return false;
                 }
                 if ("".equals(item.getPrice())) {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập giá");
                     return false;
                 }
+                if(modelItem.isExistEdit(item)){
+                	JOptionPane.showMessageDialog(null, "Tên thức uống đã tồn tại");
+                    return false;
+                }
                 break;
-
         }
         return true;
     }

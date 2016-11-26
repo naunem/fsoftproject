@@ -60,6 +60,49 @@ public class ModelKho {
        }
        return result;
    }
+   
+   public int checkKho(int idthucuong, int soluong){
+	   int temp = 0;
+	   System.out.println("hoang : " + soluong);
+	   try {
+           conn = libraryDBConnect.getConnectMySQL();
+       } catch (ClassNotFoundException ex) {
+           Logger.getLogger(ModelChucVu.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (SQLException ex) {
+           Logger.getLogger(ModelChucVu.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (IOException ex) {
+           Logger.getLogger(ModelChucVu.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       int result = 0;
+       String sql = "select soluongcon from kho where idthucpham= '"+idthucuong+"'";
+       
+       try {
+           st = conn.createStatement();
+           rs = st.executeQuery(sql);
+           while (rs.next()) {
+        	   temp = rs.getInt(1);
+        	   System.out.println("hung :"+temp);
+               break;
+           }
+           if(soluong <= temp){
+        	   System.out.println("vo day roi");
+        	   result = 1;
+           }
+       } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Lỗi câu lệnh SQL");
+           ex.printStackTrace();
+       } finally {
+           try {
+               st.close();
+               rs.close();
+               conn.close();
+           } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "Lỗi đóng SQL");
+               ex.printStackTrace();
+           }
+       }
+       return result;
+   }
    /*public int deleteThucPham(int idthucpham){
 	   try {
            conn = libraryDBConnect.getConnectMySQL();

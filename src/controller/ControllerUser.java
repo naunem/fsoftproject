@@ -36,6 +36,7 @@ public class ControllerUser {
     public void loadTable(JTable table, DefaultTableModel model, User fitem) throws ClassNotFoundException, SQLException, IOException { 
         table.setModel(model);
         model.setDataVector(vRows(fitem), vCols());
+        setWidthHeightTable(table);
     }
 
     public void setWidthHeightTable(JTable table) {
@@ -48,6 +49,7 @@ public class ControllerUser {
 
     public Vector<String> vCols() {
         Vector<String> vCols = new Vector<String>();
+        vCols.add("ID");
         vCols.add("Tên tài khoản");
         vCols.add("Tên người dùng");
         vCols.add("Chức vụ");
@@ -59,10 +61,12 @@ public class ControllerUser {
         ArrayList<User> alItem = modelItem.getList(tfitem);
         for (User it : alItem) {
             Vector<Object> v = new Vector<Object>();
-            v.add(it);
+            v.add(it.getId());
+            v.add(it);     
             v.add(it.getFullname());
             v.add(it.getChucvu());
             vRows.add(v);
+            
         }
         return vRows;
     }
@@ -87,18 +91,20 @@ public class ControllerUser {
                     }
                 
                 if ("".equals(item.getUsername())) {
-                    JOptionPane.showMessageDialog(null, "Vui lòng nhập tên");
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập tên tài khoản");
                     return false;
                 }
                 if ("".equals(item.getFullname())) {
-                    JOptionPane.showMessageDialog(null, "Vui lòng nhập tên");
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập họ và tên");
                     return false;
                 }
                 if ("".equals(item.getPassword())) {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập mật khẩu");
                     return false;
                 }
+                
                 break;
+            	
             case "del":
                 if ("".equals(item.getUsername())) {
                     JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa");
@@ -111,15 +117,19 @@ public class ControllerUser {
             
                 break;
             case "edit":
+            	if ("".equals(item.getUsername())) {
+                    JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để sửa");
+                    return false;
+                }
                 User objUserById = modelItem.getUserByUser(item.getUsername());
                 //Kiểm tra trùng username
-                if (!objUserById.getUsername().equals(item.getUsername())){
-                    User objUserByUsername = modelItem.getUserByUser(item.getUsername());
-                    if (objUserByUsername != null){
-                        JOptionPane.showMessageDialog(null, "Trùng tên đăng nhập");
-                        return false;
-                    }
-                }
+//                if (!objUserById.getUsername().equals(item.getUsername())){
+//                    User objUserByUsername = modelItem.getUserByUser(item.getUsername());
+//                    if (objUserByUsername != null){
+//                        JOptionPane.showMessageDialog(null, "Trùng tên đăng nhập");
+//                        return false;
+//                    }
+//                }
                 
                 if ("".equals(item.getUsername())) {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập tên đăng nhập");
@@ -131,6 +141,10 @@ public class ControllerUser {
                 }
                 if ("".equals(item.getPassword())) {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập mật khẩu");
+                    return false;
+                }
+                if(modelItem.isExist(item)){
+                	JOptionPane.showMessageDialog(null, "Tên đăng nhập đã tồn tại");
                     return false;
                 }
                 break;

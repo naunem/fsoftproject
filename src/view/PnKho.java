@@ -105,7 +105,7 @@ public class PnKho extends javax.swing.JPanel implements ActionListener {
         pnViTriCenter.setLayout(new java.awt.BorderLayout());
         
         tbKho.setAutoCreateRowSorter(true);
-        tbKho.setBackground(new java.awt.Color(153, 255, 153));
+//        tbKho.setBackground(new java.awt.Color(153, 255, 153));
         tbKho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

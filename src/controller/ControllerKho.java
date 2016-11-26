@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import library.LibraryDimension;
@@ -33,6 +35,7 @@ public class ControllerKho {
     public void loadTable(JTable table, DefaultTableModel model) {
         table.setModel(model);
         model.setDataVector(vRows(), vCols());
+        setWidthHeightTable(table);
     }
 
     public Vector<String> vCols() {
@@ -82,7 +85,12 @@ public class ControllerKho {
     public void setWidthHeightTable(JTable table) {
         table.getTableHeader().setPreferredSize(new Dimension(table.getPreferredSize().width, LibraryDimension.CHUCVU_HEAD_HEIGHT));
         table.setRowHeight(22);
-        
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+        table.getColumnModel().getColumn(0).setCellRenderer(leftRenderer);
+        table.getColumnModel().getColumn(1).setCellRenderer(leftRenderer);
+        table.getColumnModel().getColumn(2).setCellRenderer(leftRenderer);
+   
         table.getColumnModel().getColumn(0).setPreferredWidth(100);
         table.getColumnModel().getColumn(1).setPreferredWidth(250);
         table.getColumnModel().getColumn(2).setPreferredWidth(250);

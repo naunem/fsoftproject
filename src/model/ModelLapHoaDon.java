@@ -42,6 +42,46 @@ public class ModelLapHoaDon {
         libraryDBConnect = new LibraryDBConnect();
 
     }
+    
+    //search food
+    public ArrayList<Food> getList(Food fitem) {
+
+        ArrayList<Food> alItem = new ArrayList<Food>();
+
+        try {
+            conn = libraryDBConnect.getConnectMySQL();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ModelFood.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ModelFood.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ModelFood.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String sql = "SELECT mafood, foodname, giaban FROM foodview ";
+        if (fitem != null) {
+        	int t=0;
+            if ((fitem.getMafood()) > 0) {
+             t=1;	
+             sql += " where mafood = " + fitem.getMafood();
+            }
+            if (!("").equals(fitem.getFoodname())){
+            	sql += " where foodname LIKE '%" + fitem.getFoodname()+ "%'";
+            }
+        }
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Food item = new Food(rs.getInt("mafood"), rs.getString("foodname"), rs.getInt("giaban"), "xmcnxmnc");
+                alItem.add(item);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ModelFood.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return alItem;
+
+    }
 
     public ArrayList<BillDetail> getList(Bill fitem) {
     	

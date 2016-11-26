@@ -46,16 +46,17 @@ public class PnLeft extends javax.swing.JPanel {
         lbUsername.setText("Xin chào! "+login.getFullname());
         lbChucVu.setText("Chức vụ: "+login.getChucvu());
         addPanel(new PnViTri("Quản lý vị trí", this, fr));
-        if ("Chủ quán".equals(login.getChucvu())){
+        if (login.getId_chucvu() == 1){
             
-        }else if ("Quản lý".equals(login.getChucvu())){
-            
-            this.remove(btChucVu);
-            btChucVu.setVisible(false);
-        }else if ("Nhân viên".equals(login.getChucvu())){
+//        }else if (login.getId_chucvu() == 1)){
+//            
+//            this.remove(btChucVu);
+//            btChucVu.setVisible(false);
+        }else {
             btChucVu.setVisible(false);
             btNhanVien.setVisible(false);
             btFood.setVisible(false);
+            btNhapHang.setVisible(false);
         }
     }
 
@@ -129,7 +130,7 @@ public class PnLeft extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(104, 104));
 
         btHoaDon.setBackground(new java.awt.Color(204, 204, 204));
-        btHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star_48.png"))); // NOI18N
+        btHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/app_48.png"))); // NOI18N
         btHoaDon.setText("HÓA ĐƠN");
         btHoaDon.setMaximumSize(new java.awt.Dimension(139, 57));
         btHoaDon.setMinimumSize(new java.awt.Dimension(139, 57));
@@ -143,7 +144,7 @@ public class PnLeft extends javax.swing.JPanel {
         jPanel3.add(btHoaDon);
 
         btViTri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/navigate_48.png"))); // NOI18N
-        btViTri.setText("VỊ TRÍ");
+        btViTri.setText("GỌI MÓN");
         btViTri.setMaximumSize(new java.awt.Dimension(139, 57));
         btViTri.setMinimumSize(new java.awt.Dimension(139, 57));
         btViTri.setPreferredSize(new java.awt.Dimension(139, 57));
@@ -187,7 +188,7 @@ public class PnLeft extends javax.swing.JPanel {
         });
         jPanel3.add(btChucVu);
 
-        btKho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/designfloat_48.png"))); // NOI18N
+        btKho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/database_48.png"))); // NOI18N
         btKho.setText("KHO   ");
         btKho.setMaximumSize(new java.awt.Dimension(139, 57));
         btKho.setMinimumSize(new java.awt.Dimension(139, 57));
@@ -199,8 +200,11 @@ public class PnLeft extends javax.swing.JPanel {
         });
         jPanel3.add(btKho);
         
-        btNhapHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_48.png"))); // NOI18N
+        btNhapHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/box_download_48.png"))); // NOI18N
         btNhapHang.setText("NHẬP HÀNG");
+        btNhapHang.setMaximumSize(new java.awt.Dimension(139, 57));
+        btNhapHang.setMinimumSize(new java.awt.Dimension(139, 57));
+        btNhapHang.setPreferredSize(new java.awt.Dimension(139, 57));
         btNhapHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNhapHangActionPerformed(evt);
@@ -210,7 +214,7 @@ public class PnLeft extends javax.swing.JPanel {
         
         btThongKe.setBackground(new java.awt.Color(204, 204, 204));
         btThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pie_chart.png"))); // NOI18N
-        btThongKe.setText("Thống Kê");
+        btThongKe.setText("THỐNG KÊ");
         btThongKe.setMaximumSize(new java.awt.Dimension(139, 57));
         btThongKe.setMinimumSize(new java.awt.Dimension(139, 57));
         btThongKe.setOpaque(false);

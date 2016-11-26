@@ -13,6 +13,8 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import library.LibraryDimension;
@@ -33,6 +35,7 @@ public class ControllerChucVu {
     public void loadTable(JTable table, DefaultTableModel model, ChucVu fitem) {
         table.setModel(model);
         model.setDataVector(vRows(fitem), vCols());
+        setWidthHeightTable(table);
     }
 
     public Vector<String> vCols() {
@@ -78,11 +81,14 @@ public class ControllerChucVu {
     }
 
     public void setWidthHeightTable(JTable table) {
-        table.getTableHeader().setPreferredSize(new Dimension(table.getPreferredSize().width, LibraryDimension.CHUCVU_HEAD_HEIGHT));
+    	table.getTableHeader().setPreferredSize(new Dimension(table.getPreferredSize().width, LibraryDimension.HOADON_HEAD_HEIGHT));
         table.setRowHeight(22);
-        table.getColumnModel().getColumn(1).setPreferredWidth(LibraryDimension.CHUCVU_HEAD_WIDTH_COL_NAME);
-        table.getColumnModel().getColumn(2).setPreferredWidth(LibraryDimension.CHUCVU_HEAD_WIDTH_COL_NAME + 222);
-
+        
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+        table.getColumnModel().getColumn(0).setCellRenderer(leftRenderer);
+        table.getColumnModel().getColumn(1).setCellRenderer(leftRenderer);
+        table.getColumnModel().getColumn(2).setCellRenderer(leftRenderer);
     }
 
     public int del(ChucVu item) {
@@ -103,6 +109,10 @@ public class ControllerChucVu {
                 }
                 if ("".equals(item.getLuongcoban())) {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập lương");
+                    return false;
+                }
+                if(modelItem.isExist(item)){
+                	JOptionPane.showMessageDialog(null, "Tên chức vụ đã tồn tại");
                     return false;
                 }
                 break;

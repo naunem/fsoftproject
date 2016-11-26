@@ -10,6 +10,7 @@ package bean;
  * @author HungPham
  */
 public class User {
+	private int id;
     private int  id_chucvu;
     private String username, chucvu, password, fullname, noio, email;
 
@@ -19,7 +20,16 @@ public class User {
     }
 
     public User(int id_chucvu, String username, String chucvu, String password, String fullname, String noio, String email) {
-        
+        this.id_chucvu = id_chucvu;
+        this.username = username;
+        this.chucvu = chucvu;
+        this.password = password;
+        this.fullname = fullname;
+        this.noio = noio;
+        this.email = email;
+    }
+    public User(int id ,int id_chucvu, String username, String chucvu, String password, String fullname, String noio, String email) {
+        this.id = id;
         this.id_chucvu = id_chucvu;
         this.username = username;
         this.chucvu = chucvu;
@@ -29,6 +39,12 @@ public class User {
         this.email = email;
     }
 
+    public void setId(int id){
+    	this.id = id;
+    }
+    public int getId(){
+    	return id;
+    }
     public int getId_chucvu() {
         return id_chucvu;
     }
@@ -116,7 +132,7 @@ public class User {
     public void setActive(boolean active) {
         this.active = active;
     }
-
+    
    
     
 }

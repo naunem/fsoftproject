@@ -48,10 +48,13 @@ public class ModelHoaDon {
         } catch (IOException ex) {
             Logger.getLogger(ModelFood.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "SELECT DISTINCT hoadonban.mahd, ngaythanhtoan, username, hoadonban.makhuvuc, ISNULL(tenkhuvuc,'khu vuc da bi xoa') as tenkhuvuc, ISNULL(ban,0) as ban, ISNULL(SUM(food.giaban*soluong),0) as thanhtien, thanhtoan"
-                 + " FROM hoadonban LEFT JOIN khuvuc on khuvuc.makhuvuc = hoadonban.makhuvuc LEFT JOIN cthdban ON hoadonban.mahd = cthdban.mahd LEFT JOIN food ON cthdban.mathucpham = food.mafood"
+        String sql = "SELECT DISTINCT hoadonban.mahd, ngaythanhtoan, username, hoadonban.makhuvuc, "
+        		+ "ISNULL(tenkhuvuc,'khu vuc da bi xoa') as tenkhuvuc, ISNULL(ban,0) as ban, "
+        		+ "ISNULL(SUM(food.giaban*soluong),0) as thanhtien, thanhtoan"
+                 + " FROM hoadonban LEFT JOIN khuvuc on khuvuc.makhuvuc = hoadonban.makhuvuc LEFT JOIN cthdban "
+                 + "ON hoadonban.mahd = cthdban.mahd LEFT JOIN food ON cthdban.mathucpham = food.mafood"
                  + " GROUP BY hoadonban.mahd, ngaythanhtoan, username, hoadonban.makhuvuc, tenkhuvuc, ban,thanhtoan "
-                 + "ORDER BY hoadonban.thanhtoan DESC, hoadonban.ngaythanhtoan DESC";    
+                 + "ORDER BY hoadonban.mahd DESC";    
         try {
             st = conn.createStatement();
             rs = st.executeQuery(sql);
@@ -125,8 +128,8 @@ public class ModelHoaDon {
         } catch (IOException ex) {
             Logger.getLogger(ModelFood.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        String sql = "SELECT DISTINCT hoadonban.mahd, ngaythanhtoan, username, hoadonban.makhuvuc, IS NULL(tenkhuvuc,\"khu vực đã bị xóa\") as tenkhuvuc, ifnull(ban,0) as ban, IFNULL(SUM(food.giaban*soluong),0) as thanhtien, thanhtoan"
-                + " FROM `hoadonban` LEFT JOIN khuvuc on khuvuc.makhuvuc = hoadonban.makhuvuc LEFT JOIN cthdban ON hoadonban.mahd = cthdban.mahd LEFT JOIN food ON cthdban.mathucpham = food.mafood"
+        String sql = "SELECT DISTINCT hoadonban.mahd, ngaythanhtoan, username, hoadonban.makhuvuc, ISNULL(tenkhuvuc,'khu vực đã bị xóa') as tenkhuvuc, ISNULL(ban,0) as ban, ISNULL(SUM(food.giaban*soluong),0) as thanhtien, thanhtoan"
+                + " FROM hoadonban LEFT JOIN khuvuc on khuvuc.makhuvuc = hoadonban.makhuvuc LEFT JOIN cthdban ON hoadonban.mahd = cthdban.mahd LEFT JOIN food ON cthdban.mathucpham = food.mafood"
                 + " WHERE hoadonban.thanhtoan=0 ";
             if (d>0){
                 sql+= " and DAY(ngaythanhtoan) = "+d;
@@ -139,6 +142,8 @@ public class ModelHoaDon {
             }
             if (!"".equals(date)){
                 String [] arTime = date.split("---");
+                System.out.println("hung cho :"+ arTime[0]);
+                System.out.println("hung cho :"+ arTime[1]);
                 sql += " and ngaythanhtoan BETWEEN '"+arTime[0]+"' AND '" + arTime[1]+"' ";
             }
             sql+= " GROUP BY hoadonban.mahd, ngaythanhtoan, username, hoadonban.makhuvuc, tenkhuvuc, ban,thanhtoan "

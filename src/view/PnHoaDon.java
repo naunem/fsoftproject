@@ -19,6 +19,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -93,6 +94,14 @@ public class PnHoaDon extends javax.swing.JPanel implements ActionListener {
                 }
             }
         };
+        if(user.getId_chucvu() == 1){
+        	
+        }else{
+        	pnBillLeft.setVisible(false);
+        	pnBillTop.setVisible(false);
+        	//pnBillF.setVisible(false);
+        	
+        }
        
         btXem.addActionListener(this);
         btXem.setVisible(false);
@@ -130,15 +139,15 @@ public class PnHoaDon extends javax.swing.JPanel implements ActionListener {
         tfTitleCenter = new javax.swing.JLabel();
         pnBillLeft = new javax.swing.JPanel();
         pnHoadonTacVu = new javax.swing.JPanel();
-        btHomNay = new javax.swing.JButton();
-        btThang = new javax.swing.JButton();
-        btNam = new javax.swing.JButton();
+//        btHomNay = new javax.swing.JButton();
+//        btThang = new javax.swing.JButton();
+//        btNam = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btTuan = new javax.swing.JButton();
-        tfMonth = new javax.swing.JTextField();
-        tfDay = new javax.swing.JTextField();
-        tfYear = new javax.swing.JTextField();
+//        tfMonth = new javax.swing.JTextField();
+//        tfDay = new javax.swing.JTextField();
+//        tfYear = new javax.swing.JTextField();
         spinNewsDateFrom = new javax.swing.JSpinner();
         spinNewsDateTo = new javax.swing.JSpinner();
         pnHoadonTacVu1 = new javax.swing.JPanel();
@@ -183,26 +192,26 @@ public class PnHoaDon extends javax.swing.JPanel implements ActionListener {
         pnHoadonTacVu.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)), "Thời gian", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
         pnHoadonTacVu.setForeground(new java.awt.Color(255, 255, 204));
 
-        btHomNay.setText("Ngày");
-        btHomNay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btHomNayActionPerformed(evt);
-            }
-        });
+//        btHomNay.setText("Ngày");
+//        btHomNay.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                btHomNayActionPerformed(evt);
+//            }
+//        });
 
-        btThang.setText("Tháng");
-        btThang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btThangActionPerformed(evt);
-            }
-        });
-
-        btNam.setText("Năm");
-        btNam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNamActionPerformed(evt);
-            }
-        });
+//        btThang.setText("Tháng");
+//        btThang.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                btThangActionPerformed(evt);
+//            }
+//        });
+//
+//        btNam.setText("Năm");
+//        btNam.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                btNamActionPerformed(evt);
+//            }
+//        });
 
         jLabel1.setText("Ngày ");
 
@@ -244,35 +253,35 @@ public class PnHoaDon extends javax.swing.JPanel implements ActionListener {
                         .addGap(0, 31, Short.MAX_VALUE)
                         .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHoadonTacVuLayout.createSequentialGroup()
-                                .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btNam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btThang, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                                    .addComponent(btHomNay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfDay, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfYear, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(183, 183, 183))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHoadonTacVuLayout.createSequentialGroup()
+//                                .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+//                                    .addComponent(btNam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+//                                    .addComponent(btThang, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+//                                    .addComponent(btHomNay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+//                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+//                                .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//                                    .addComponent(tfDay, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                                    .addComponent(tfMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                                    .addComponent(tfYear, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+//                                .addGap(183, 183, 183))
+//                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHoadonTacVuLayout.createSequentialGroup()
                                 .addComponent(btTuan)
                                 .addContainerGap())))))
         );
         pnHoadonTacVuLayout.setVerticalGroup(
             pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnHoadonTacVuLayout.createSequentialGroup()
-                .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btHomNay)
-                    .addComponent(tfDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btThang)
-                    .addComponent(tfMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btNam)
-                    .addComponent(tfYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+//                .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+//                    .addComponent(btHomNay)
+//                    .addComponent(tfDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+//                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+//                .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+//                    .addComponent(btThang)
+//                    .addComponent(tfMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+//                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+//                .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+//                    .addComponent(btNam)
+//                    .addComponent(tfYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+//                .addGap(18, 18, 18)
                 .addGroup(pnHoadonTacVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(spinNewsDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -339,7 +348,7 @@ public class PnHoaDon extends javax.swing.JPanel implements ActionListener {
 
         pnBillCenter.add(pnBillF, java.awt.BorderLayout.PAGE_END);
 
-        tbBill.setBackground(new java.awt.Color(204, 255, 204));
+//        tbBill.setBackground(new java.awt.Color(204, 255, 204));
         tbBill.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -419,8 +428,13 @@ public class PnHoaDon extends javax.swing.JPanel implements ActionListener {
 
     private void btTuanActionPerformed(java.awt.event.ActionEvent evt) {                                       
         Date dateFrom = (Date) spinNewsDateFrom.getValue();
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String date1 = format1.format(dateFrom);
+        
         Date dateTo = (Date) spinNewsDateTo.getValue();
-        String date_giovao_search = dateFrom + "---" + dateTo;
+        SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+        String date2 = format2.format(dateTo);
+        String date_giovao_search = date1 + "---" + date2;
         loadTable(date_giovao_search);
     }                                      
 
@@ -445,23 +459,26 @@ public class PnHoaDon extends javax.swing.JPanel implements ActionListener {
                 sheet1.addCell(new Label(0, 2, "Thu nhập"));
                 sheet1.addCell(new Label(1, 2, sum + ""));
                 sheet1.addCell(new Label(0, 3, "ID"));
-                sheet1.addCell(new Label(3, 3, "Người lập"));
-                sheet1.addCell(new Label(4, 3, "Bàn"));
-                sheet1.addCell(new Label(5, 3, "Thành tiền"));
-                sheet1.addCell(new Label(6, 3, "Tình trạng"));
+                sheet1.addCell(new Label(3, 3, "Ngày lập"));
+                sheet1.addCell(new Label(4, 3, "Người lập"));
+                sheet1.addCell(new Label(5, 3, "Bàn"));
+                sheet1.addCell(new Label(6, 3, "Thành tiền"));
+                sheet1.addCell(new Label(7, 3, "Tình trạng"));
 
                 for (int i = 0; i < vRows.size(); i++) {
                     String id = vRows.get(i).get(0).toString();
-                    String nguoilap = vRows.get(i).get(3).toString();
-                    String ban = vRows.get(i).get(4).toString();
-                    String thanhtien = vRows.get(i).get(5).toString();
-                    String tinhtrang = vRows.get(i).get(6).toString();
+                    String ngaylap = vRows.get(i).get(1).toString();
+                    String nguoilap = vRows.get(i).get(2).toString();
+                    String ban = vRows.get(i).get(3).toString();
+                    String thanhtien = vRows.get(i).get(4).toString();
+                    String tinhtrang = vRows.get(i).get(5).toString();
                     int row = i + 4;
                     sheet1.addCell(new Label(0, row, id));
-                    sheet1.addCell(new Label(3, row, nguoilap));
-                    sheet1.addCell(new Label(4, row, ban));
-                    sheet1.addCell(new Label(5, row, thanhtien));
-                    sheet1.addCell(new Label(6, row, tinhtrang));
+                    sheet1.addCell(new Label(3, row, ngaylap));
+                    sheet1.addCell(new Label(4, row, nguoilap));
+                    sheet1.addCell(new Label(5, row, ban));
+                    sheet1.addCell(new Label(6, row, thanhtien));
+                    sheet1.addCell(new Label(7, row, tinhtrang));
 
                 }
                 workbook.write();
@@ -493,9 +510,7 @@ public class PnHoaDon extends javax.swing.JPanel implements ActionListener {
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton btExcel;
-    private javax.swing.JButton btHomNay;
-    private javax.swing.JButton btNam;
-    private javax.swing.JButton btThang;
+
     private javax.swing.JButton btTuan;
     private javax.swing.JButton btXem;
     private javax.swing.JLabel jLabel1;

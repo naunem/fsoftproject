@@ -26,9 +26,14 @@ public class Food {
         this.price = price;
         this.picture = picture;
     }
-   public Food(int mafood){
-	   this.mafood = mafood;
-   }
+    public Food(int mafood){
+    	this.mafood = mafood;
+    }
+    
+    public Food(String foodname){
+    	this.foodname = foodname;
+    }
+    
     public Food(int mafood, String foodname) {
         this.mafood = mafood;
         this.foodname = foodname;
